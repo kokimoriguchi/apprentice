@@ -6,6 +6,7 @@ class VendingMachine
         @count = 0
     end
 
+    #投入金額足すのと100円かどうかの判断
     def deposit_coin(money)
         if money == 100
             @money += money
@@ -14,6 +15,7 @@ class VendingMachine
         end
     end
 
+    #カップ足すのと100以下かどうかの判断
     def add_cup(count)
         if count <= 100
             @count += count
@@ -22,41 +24,35 @@ class VendingMachine
         end
     end
 
+    #hotかiceかどうかの判断
+    def temperature(item)
+        item.select_drink == "hot" || item.select_drink == "ice"
+    end
+
+    #金額が商品の値段以上あるのか確認するメソッド
+    def calcurate(item)
+        @money >= item.drink_price
+        item.select_drink
+    end
+
+    #決済完了させ商品を出す。
+    def pay(item)
+        @money -= item.drink_price
+        item.select_drink
+    end
+
+    #商品選んで名前返す
     def press_button(item)
-        case item.select_drink
-        when "cider"
-            if item.drink_price <= @money
-                @money -= item.drink_price
-                "cider"
+        if calcurate(item)
+            if temperature(item)
+                if @count > 0
+                    @count -= 1
+                    pay(item)
+                else
+                    "error"
+                end
             else
-                "お金が足りません。"
-            end
-        when "cola"
-            if item.drink_price <= @money
-                @money -= item.drink_price
-                "cola"
-            else
-                "お金が足りません。"
-            end
-        when "hot"
-            if item.drink_price <= @money && @count > 0
-                @money -= item.drink_price
-                @count -= 1
-                "hot"
-            elsif @count == 0
-                "カップがありません。"
-            else
-                "お金が足りません。"
-            end
-        when "ice"
-            if item.drink_price <= @money && @count > 0
-                @money -= item.drink_price
-                @count -= 1
-                "ice"
-            elsif @count == 0
-                "カップがありません。"
-            else
-                "お金が足りません"
+                pay(item)
             end
         else
             "error"

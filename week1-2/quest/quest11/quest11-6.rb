@@ -24,6 +24,11 @@ class VendingMachine
         end
     end
 
+     #hotかiceかどうかの判断
+    def temperature(item)
+        item.select_drink == "hot" || item.select_drink == "ice"
+    end
+
     #金額が商品の値段以上あるのか確認するメソッド
     def calcurate(item)
         @money >= item.drink_price
@@ -38,12 +43,14 @@ class VendingMachine
     #商品選んで名前返す
     def press_button(item)
         if calcurate(item)
-            if @count > 0
-                @count -= 1
+            if temperature(item)
+                if @count > 0
+                    @count -= 1
+                    pay(item)
+                end
+            else
                 pay(item)
             end
-        else
-            pay(item)
         end
     end
 
