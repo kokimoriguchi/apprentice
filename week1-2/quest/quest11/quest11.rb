@@ -245,7 +245,6 @@ puts vending_machine.press_button(cider)
 puts vending_machine.press_button(hot_cup_coffee)
 vending_machine.add_cup(1)
 puts vending_machine.press_button(hot_cup_coffee)
-=end
 
 #6ポリモーフィズム
 class VendingMachine
@@ -386,3 +385,4 @@ puts vending_machine.press_button(snack)
 vending_machine.deposit_coin(100)
 vending_machine.deposit_coin(100)
 puts vending_machine.press_button(snack)
+=end

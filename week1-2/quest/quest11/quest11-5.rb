@@ -76,27 +76,27 @@ class Item
 end
 
 class PetDrink < Item
-    @@DRINK = {"cola" => 150, "cider" => 100} ##@@のクラス変数にすることでスーパークラス、サブクラスともに参照可能になる！
+    @@drink = {"cola" => 150, "cider" => 100} ##@@のクラス変数にすることでスーパークラス、サブクラスともに参照可能になる！
 
     def initialize(drink_name)
         super #Itemクラスを継承しているので@select_drink = drink_nameをsuperだけで表せる。
     end
 
     def drink_price
-        @@DRINK[@select_drink]
+        @@drink[@select_drink]
     end
 
 end
 
 class CoffeDrink < Item
-    @@DRINK = {"hot" => 100, "ice" => 100}
+    @@drink = {"hot" => 100, "ice" => 100}
 
     def initialize(drink_name)
         super
     end
 
     def drink_price
-        @@DRINK[@select_drink]
+        @@drink[@select_drink]
     end
 end
 
