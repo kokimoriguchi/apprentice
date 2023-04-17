@@ -55,7 +55,9 @@ class Machine
 
     #PetDrinkをnewした時のciderオブジェクトを引数として受け取り(ここではitemとしている)オブジェクト.メソッドで
     def comp_pay(item)
-        return unless calcurate(item) #returnはこの条件当てはまればメソッドを抜ける。当てはまらなければ続きを実行する。breakは1個処理戻るくらいらしい。
+        #returnはこの条件当てはまればメソッドを抜ける。当てはまらなければ続きを実行する。breakは1個処理戻るくらいらしい
+        #unlessなのでcalcurate(item)が偽の場合処理を抜ける。if文を1つ削れる。
+        return unless calcurate(item)
 
         if temperature(item)
             if @cup > 1
