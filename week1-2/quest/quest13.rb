@@ -11,8 +11,9 @@ require 'debug'
 
 def calculate(num1, num2, operator)
   # クラスを完成させてください
-  binding.break
-  if num1.is_a?(Integer) && num2.is_a?(Integer)#is_aはレシーバが属するクラスここではInteger整数のクラスにあるかどうか判断。trueであれば実行。しかし、to_iで整数以外も0で返すので全て通る。
+  #is_aはレシーバが属するクラスここではInteger整数のクラスにあるかどうか判断。trueであれば実行。しかし、to_iで整数以外も0で返すので全て通る
+  #binding.break
+  if num1.is_a?(Integer) && num2.is_a?(Integer)
     case operator
     when '+'
       num1 + num2
