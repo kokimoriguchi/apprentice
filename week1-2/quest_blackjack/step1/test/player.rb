@@ -1,5 +1,7 @@
-class Player
+require './judge'
 
+class Player
+    include JudegModule
     attr_reader :total_score
 
     # Deckクラスのインスタンスを受け取る
@@ -43,6 +45,8 @@ class Player
                 puts 'Y(yes)もしくはN(no)を選択してください。'
             end
         end
+        #ゲームマスタークラスで条件分岐するためにトータルスコア返している
+        total_score
     end
 
     #追加ドロー（ヒット）する場合の処理
@@ -50,11 +54,21 @@ class Player
         @deck.draw
         @current_score += @deck.selected_score
         puts "あなたの引いたカードは#{ @deck.selected_type }の#{ @deck.selected_number }です。"
+        re_hit
     end
 
     #現在のスコア
     def total_score
-        @total_score = @current_score
+        @current_score
+    end
+
+    #追加ドロー（ヒット）した後にスコアの評価し判断する。
+    def re_hit
+        if burst?(total_score)
+            return "Burst"
+        else
+            select_thing
+        end
     end
 
 end
