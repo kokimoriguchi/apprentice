@@ -14,31 +14,31 @@ class Dealer
     #1枚目のドロー
     def first_draw
         @deck.draw
-        @first_score = @deck.selected_score
+        @current_score += @deck.selected_score
         puts "ディーラーの引いたカードは#{ @deck.selected_type }の#{ @deck.selected_number }です。"
     end
 
     #2枚目のドロー
     def second_draw
         @deck.draw
-        @second_score = @deck.selected_score
+        @second_draw_score = @deck.selected_score
+        @second_draw_type = @deck.selected_type
+        @second_draw_number = @deck.selected_number
         puts "ディーラーの2枚目のカードはわかりません。"
         current_score #2枚目引いた時点でcurrent_scoreに数字入っているのでここで返している。
     end
 
     #2枚の合計点数
     def current_score
-        @current_score = @first_score + @second_score
+        @current_score
     end
 
     #2枚目のカード公開し、合計点数出す。
     def show_second_draw
+        @current_score += @second_draw_score
         #first_scoreとsecond_scoreの値を渡しておかないとcurrent_scoreの値がでない
-        @first_score
-        @second_score
-        puts "ディーラーの引いた2枚目のカードは#{ @deck.selected_type }の#{ @deck.selected_number }でした。"
+        puts "ディーラーの引いた2枚目のカードは#{ @second_draw_type }の#{ @second_draw_number }でした。"
         puts "ディーラーの現在の点数は#{@current_score}です。"
-        total_score
         add_hit
     end
 
@@ -62,7 +62,6 @@ class Dealer
         @deck.draw
         @current_score += @deck.selected_score
         puts "ディーラーの引いたカードは#{ @deck.selected_type }の#{ @deck.selected_number }です。"
-        puts "ディーラーの現在の点数は#{@current_score}です。"
         re_hit
     end
 
@@ -73,7 +72,6 @@ class Dealer
         else
             add_hit
         end
-        total_score
     end
 
 end

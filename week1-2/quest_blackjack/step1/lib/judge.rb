@@ -20,6 +20,8 @@ class Judge
         puts "ディーラーの得点は#{@dealer.total_score}です。"
         if @player.total_score > @dealer.total_score
             puts "あなたの勝ちです！"
+        elsif @player.total_score == @dealer.total_score
+            puts "引き分けです。"
         else
             puts "ディーラーの勝ちです！"
         end
