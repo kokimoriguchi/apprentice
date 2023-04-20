@@ -1,10 +1,11 @@
+
 require './deck'
 require './player'
 require './dealer'
 require './judge'
 
+#ゲームの全体統括
 class GameMaster
-
     include JudegModule
 
     def initialize
@@ -41,7 +42,7 @@ class GameMaster
         score = @player.select_thing
         if burst?(score)
             puts "あなたの現在の得点は#{score}です"
-            puts "バーストしました。あなたの負けです。"
+            puts 'バーストしました。あなたの負けです。'
             end_turn
         else
             dealer_draw_turn
@@ -53,8 +54,8 @@ class GameMaster
         score = @dealer.show_second_draw
         if burst?(score)
             puts "ディーラーの現在の得点は#{score}です。"
-            puts "バーストしました。"
-            puts "プレイヤーの勝ちです。"
+            puts 'バーストしました。'
+            puts 'プレイヤーの勝ちです。'
             end_turn
         else
             judge_turn
@@ -71,7 +72,6 @@ class GameMaster
         puts 'ブラックジャックゲームを終了します。'
         puts '----------------------------------------------'
     end
-
 end
 
 GameMaster.new
