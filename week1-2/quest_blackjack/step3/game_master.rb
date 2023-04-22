@@ -14,7 +14,7 @@ class GameMaster
         @deck = Deck.new
 
         # Deckクラスのインスタンスを渡して算用できるようにしている。
-        @player = Player.new(@deck) #デッキからみたいなイメージ
+        @player = Player.new(@deck)
         @dealer = Dealer.new(@deck)
 
         # プレイヤーとディーラーのインスタンスを渡す。バーストとかの条件分岐はここでする。
@@ -28,6 +28,20 @@ class GameMaster
         puts '----------------------------------------------'
         puts 'ブラックジャックを開始します。'
 
+        #プレイ人数選択
+        select_player_turn
+
+        #プレイヤーの最初の処理
+        @player.first_draw
+        @player.second_draw
+
+        #ディーラーの最初の処理
+        @dealer.first_draw
+        @dealer.second_draw
+    end
+
+    #最初の2枚ドローのターン
+    def first_turn
         #プレイヤーの最初の処理
         @player.first_draw
         @player.second_draw
@@ -72,6 +86,27 @@ class GameMaster
         puts '----------------------------------------------'
     end
 
+    #プレイヤーの人数選択
+    def select_player_turn
+        loop do
+            puts 'プレイヤー人数を選んで下さい'
+            puts 'a: 1人 b: 2人 c: 3人'
+            puts 'a〜cを選んでください'
+            case select_player = gets.chomp
+            when 'a'
+                puts "hitori"
+                break
+            when 'b'
+                puts "hutari"
+                break
+            when 'c'
+                puts "sannninn"
+                break
+            else
+                puts 'a〜cで選んで下さい。'
+            end
+        end
+    end
 end
 
 GameMaster.new

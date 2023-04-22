@@ -9,26 +9,22 @@ class Player
     def initialize(deck)
         @deck = deck
         @total_score = 0
+        @current_score = 0
     end
 
     #1枚目のドロー
     def first_draw
         @deck.draw
-        @first_score = @deck.selected_score
+        add_score
         puts "あなたの引いたカードは#{@deck.selected_type}の#{@deck.selected_number}です。"
     end
 
     #2枚目のドロー
     def second_draw
         @deck.draw
-        @second_score = @deck.selected_score
+        add_score
         puts "あなたの2枚目に引いたカードは#{@deck.selected_type}の#{@deck.selected_number}です。"
-        current_score #2枚目引いた時点でcurrent_scoreに数字入っているのでここで返している。
-    end
-
-    #2枚の合計点数
-    def current_score
-        @current_score = @first_score + @second_score
+        #current_score #2枚目引いた時点でcurrent_scoreに数字入っているのでここで返している。
     end
 
     #ドローするかどうかの判断
@@ -53,8 +49,9 @@ class Player
     #追加ドロー（ヒット）する場合の処理
     def hit
         @deck.draw
-        @current_score += @deck.selected_score
+        add_score
         puts "あなたの引いたカードは#{@deck.selected_type}の#{@deck.selected_number}です。"
+        puts "あなたの現在の得点は#{@current_score}です"
         re_hit
     end
 
@@ -69,4 +66,13 @@ class Player
 
         select_thing
     end
+
+    #current_scoreにドローしたスコアをプラスする。かつ、プラスする際にAを含んでいれば21以内で最大値になる方（1or11）にするメソッド
+    def add_score
+        @current_score += @deck.selected_score
+        if ['A'].include?(@deck.selected_number) && @current_score < 11
+            @current_score += 10
+        end
+    end
+
 end

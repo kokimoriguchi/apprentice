@@ -1,4 +1,6 @@
 #ディーラーの処理
+require 'debug'
+
 class Dealer
     include JudegModule
 
@@ -12,18 +14,18 @@ class Dealer
     #1枚目のドロー
     def first_draw
         @deck.draw
-        @current_score += @deck.selected_score
+        add_score
         puts "ディーラーの引いたカードは#{@deck.selected_type}の#{@deck.selected_number}です。"
     end
 
     #2枚目のドロー
     def second_draw
         @deck.draw
-        @second_draw_score = @deck.selected_score
+        add_score
+        #1度セカンドドロー変数に入れておいて開示のタイミングで変数取れるようにする。
         @second_draw_type = @deck.selected_type
         @second_draw_number = @deck.selected_number
         puts 'ディーラーの2枚目のカードはわかりません。'
-        current_score #2枚目引いた時点でcurrent_scoreに数字入っているのでここで返している。
     end
 
     #2枚の合計点数
@@ -31,10 +33,8 @@ class Dealer
 
     #2枚目のカード公開し、合計点数出す。
     def show_second_draw
-        @current_score += @second_draw_score
-        #first_scoreとsecond_scoreの値を渡しておかないとcurrent_scoreの値がでない
         puts "ディーラーの引いた2枚目のカードは#{@second_draw_type}の#{@second_draw_number}でした。"
-        puts "ディーラーの現在の点数は#{@current_score}です。"
+        puts "ディーラーの現在の得点は#{@current_score}です。"
         add_hit
     end
 
@@ -55,8 +55,9 @@ class Dealer
     #追加ドロー（ヒット）する場合の処理
     def hit
         @deck.draw
-        @current_score += @deck.selected_score
+        add_score
         puts "ディーラーの引いたカードは#{@deck.selected_type}の#{@deck.selected_number}です。"
+        puts "ディーラーの現在の得点は#{@current_score}です。"
         re_hit
     end
 
@@ -65,5 +66,13 @@ class Dealer
         return if burst?(total_score)
 
         add_hit
+    end
+
+    #current_scoreにドローしたスコアをプラスする。かつ、プラスする際にAを含んでいれば21以内で最大値になる方（1or11）にするメソッド
+    def add_score
+        @current_score += @deck.selected_score
+        if ['A'].include?(@deck.selected_number) && @current_score < 11
+            @current_score += 10
+        end
     end
 end
