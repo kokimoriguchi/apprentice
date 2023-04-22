@@ -1,3 +1,24 @@
-#IFの条件分岐細かいところは子クラスに落としていい可能性高い
-#NEWした時に引数あげて名前とかもできる
-#入力値に対する分岐も入力値を引数に与え、プライベートでその入力値に対して分岐させて各子クラスをNEWする分岐があれば細かく書く必要がなくなる。
+class CpuPlayer < Player
+    def initialize(deck, name)
+        super
+    end
+
+    def first_draw
+        super
+        add_hit
+    end
+
+    def hit
+        super
+    end
+
+    #17以下の場合。追加でドローするかどうかの判断
+    def add_hit
+        return unless @current_score < 17
+
+        hit
+
+        total_score
+    end
+
+end

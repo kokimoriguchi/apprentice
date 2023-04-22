@@ -1,8 +1,11 @@
 
-require './deck'
-require './player'
-require './dealer'
-require './judge'
+require_relative './deck'
+require_relative 'player'
+require_relative './dealer'
+require_relative './judge'
+require_relative './user'
+require_relative './cpu_player'
+
 
 #ゲームの全体統括
 class GameMaster
@@ -14,46 +17,80 @@ class GameMaster
         @deck = Deck.new
 
         # Deckクラスのインスタンスを渡して算用できるようにしている。
-        @player = Player.new(@deck)
-        @dealer = Dealer.new(@deck)
+        @user = User.new(@deck, "あなた")
+        @dealer = Dealer.new(@deck, "ディーラー")
 
-        # プレイヤーとディーラーのインスタンスを渡す。バーストとかの条件分岐はここでする。
-        @judge = Judge.new(@player, @dealer)
+        #プレイヤーとディーラーのインスタンスを渡す。バーストとかの条件分岐はここでする。
+        @judge = Judge.new(@user, @dealer)
 
         start
-        player_draw_turn
     end
 
     def start
         puts '----------------------------------------------'
         puts 'ブラックジャックを開始します。'
+        choose_player_count
+    end
 
-        #プレイ人数選択
-        select_player_turn
-
-        #プレイヤーの最初の処理
-        @player.first_draw
-        @player.second_draw
-
-        #ディーラーの最初の処理
-        @dealer.first_draw
-        @dealer.second_draw
+    #プレイヤーの人数選択
+    def choose_player_count
+        puts 'プレイ人数を選んで下さい。'
+        puts '1人から3人まで選べます!'
+        print '1〜3の数字を選んで下さい。'
+        loop do
+            case player_count = gets.chomp.to_i
+            when 1
+                puts "#{player_count}人でプレイします。"
+                first_turn(player_count)
+                break
+            when 2
+                puts "#{player_count}人でプレイします。"
+                @cpu_player_one = CpuPlayer.new(@deck, "CPU1")
+                first_turn(player_count)
+                break
+            when 3
+                puts "#{player_count}人でプレイします。"
+                @cpu_player_one = CpuPlayer.new(@deck, "CPU1")
+                @cpu_player_two = CpuPlayer.new(@deck, "CPU2")
+                first_turn(player_count)
+                break
+            else
+                puts '1,2,3のいずれかを入力してください。'
+            end
+        end
     end
 
     #最初の2枚ドローのターン
-    def first_turn
-        #プレイヤーの最初の処理
-        @player.first_draw
-        @player.second_draw
-
+    def first_turn(player_count)
         #ディーラーの最初の処理
         @dealer.first_draw
         @dealer.second_draw
+
+        #プレイヤーの最初の処理
+        @user.first_draw
+
+        #プレイヤーの人数による分岐
+        player_count_judge(player_count)
+
+        #プレイヤーのHIT選択に移行
+        player_draw_turn
+    end
+
+    def player_count_judge(player_count)
+        case player_count
+        when 1
+            return
+        when 2
+            @cpu_player_one.first_draw
+        when 3
+            @cpu_player_one.first_draw
+            @cpu_player_two.first_draw
+        end
     end
 
     #プレイヤーのヒットするかどうかの判断とその繰り返しメソッド呼び出す。バーストしたら終了に分岐。
     def player_draw_turn
-        score = @player.select_thing
+        score = @user.select_thing
         if burst?(score)
             puts 'バーストしました。あなたの負けです。'
             end_turn
@@ -81,32 +118,14 @@ class GameMaster
         end_turn
     end
 
+    #終了見せる
     def end_turn
         puts 'ブラックジャックゲームを終了します。'
         puts '----------------------------------------------'
     end
 
-    #プレイヤーの人数選択
-    def select_player_turn
-        loop do
-            puts 'プレイヤー人数を選んで下さい'
-            puts 'a: 1人 b: 2人 c: 3人'
-            puts 'a〜cを選んでください'
-            case select_player = gets.chomp
-            when 'a'
-                puts "hitori"
-                break
-            when 'b'
-                puts "hutari"
-                break
-            when 'c'
-                puts "sannninn"
-                break
-            else
-                puts 'a〜cで選んで下さい。'
-            end
-        end
-    end
+
 end
+
 
 GameMaster.new

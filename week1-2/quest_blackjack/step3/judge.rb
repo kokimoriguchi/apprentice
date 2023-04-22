@@ -11,17 +11,17 @@ end
 
 #ゲームの判定をするクラス
 class Judge
-    def initialize(player, dealer)
-        @player = player
+    def initialize(user, dealer)
+        @user = user
         @dealer = dealer
     end
 
     def game_judge
-        puts "あなたの得点は#{@player.total_score}です。"
+        puts "あなたの得点は#{@user.total_score}です。"
         puts "ディーラーの得点は#{@dealer.total_score}です。"
-        if @player.total_score > @dealer.total_score
+        if @user.total_score > @dealer.total_score
             puts 'あなたの勝ちです！'
-        elsif @player.total_score == @dealer.total_score
+        elsif @user.total_score == @dealer.total_score
             puts '引き分けです。'
         else
             puts 'ディーラーの勝ちです！'
