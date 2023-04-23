@@ -16,7 +16,7 @@ class GameMaster
         @card = Card.new
         @deck = Deck.new
 
-        # Deckクラスのインスタンスを渡して算用できるようにしている。
+        # Deckクラスのインスタンスを渡して参照できるようにしている。
         @user = User.new(@deck, "あなた")
         @dealer = Dealer.new(@deck, "ディーラー")
 
@@ -45,13 +45,13 @@ class GameMaster
                 break
             when 2
                 puts "#{player_count}人でプレイします。"
-                @cpu_player_one = CpuPlayer.new(@deck, "CPU1")
+                @cpu_one = CpuPlayer.new(@deck, "CPU1")
                 first_turn(player_count)
                 break
             when 3
                 puts "#{player_count}人でプレイします。"
-                @cpu_player_one = CpuPlayer.new(@deck, "CPU1")
-                @cpu_player_two = CpuPlayer.new(@deck, "CPU2")
+                @cpu_one = CpuPlayer.new(@deck, "CPU1")
+                @cpu_two = CpuPlayer.new(@deck, "CPU2")
                 first_turn(player_count)
                 break
             else
@@ -76,19 +76,20 @@ class GameMaster
         player_draw_turn
     end
 
+    #選ばれたプレイヤーの人数によってCPUの追加分岐
     def player_count_judge(player_count)
         case player_count
         when 1
             return
         when 2
-            @cpu_player_one.first_draw
+            @cpu_one.first_draw
         when 3
-            @cpu_player_one.first_draw
-            @cpu_player_two.first_draw
+            @cpu_one.first_draw
+            @cpu_two.first_draw
         end
     end
 
-    #プレイヤーのヒットするかどうかの判断とその繰り返しメソッド呼び出す。バーストしたら終了に分岐。
+    # プレイヤーのヒットするかどうかの判断とその繰り返しメソッド呼び出す。バーストしたら終了に分岐。
     def player_draw_turn
         score = @user.select_thing
         if burst?(score)
@@ -99,7 +100,7 @@ class GameMaster
         end
     end
 
-    #プレイヤーのヒットが終わったら呼び出される。バーストしなければ得点の比較に入るジャッジターンを呼び出す。
+    # プレイヤーのヒットが終わったら呼び出される。バーストしなければ得点の比較に入るジャッジターンを呼び出す。
     def dealer_draw_turn
         @dealer.show_second_draw
         score = @dealer.total_score
@@ -123,7 +124,6 @@ class GameMaster
         puts 'ブラックジャックゲームを終了します。'
         puts '----------------------------------------------'
     end
-
 
 end
 

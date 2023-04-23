@@ -1,9 +1,9 @@
-
 require './card'
 
 #52枚の中からランダムに1枚ドローするデッキクラス
 class Deck < Card
     attr_reader :selected_type, :selected_number, :selected_score
+
     #おそらく文字列でキーとして入っている数字の部分を2回目引いてしまうことがありそれでエラーが出る。
     def draw
         if @cards.empty?

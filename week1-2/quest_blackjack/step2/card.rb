@@ -18,7 +18,7 @@ class Card
          card_value = number.to_i # 数字の場合はそのまま値を使う
          card_value = 10 if ['J', 'Q', 'K'].include?(number) # card_valueにJ,Q,Kどれか含まれていたらJ,Q,Kは10の値を持つ
          card_value = 1 if ['A'].include?(number) #Aは1の値を持つ
-		      #{"type" => {"numbers" => value数値},"type" => {"numbers" => value数値}...}の形
+         #{"type" => {"numbers" => value数値},"type" => {"numbers" => value数値}...}の形
          cards[type][number] = card_value
        end
      end

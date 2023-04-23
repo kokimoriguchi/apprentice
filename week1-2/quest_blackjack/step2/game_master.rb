@@ -1,4 +1,3 @@
-
 require './deck'
 require './player'
 require './dealer'
@@ -71,7 +70,6 @@ class GameMaster
         puts 'ブラックジャックゲームを終了します。'
         puts '----------------------------------------------'
     end
-
 end
 
 GameMaster.new

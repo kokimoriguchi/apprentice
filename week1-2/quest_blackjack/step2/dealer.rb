@@ -1,6 +1,4 @@
 #ディーラーの処理
-require 'debug'
-
 class Dealer
     include JudegModule
 
@@ -71,8 +69,8 @@ class Dealer
     #current_scoreにドローしたスコアをプラスする。かつ、プラスする際にAを含んでいれば21以内で最大値になる方（1or11）にするメソッド
     def add_score
         @current_score += @deck.selected_score
-        if ['A'].include?(@deck.selected_number) && @current_score < 11
-            @current_score += 10
-        end
+        return unless ['A'].include?(@deck.selected_number) && @current_score <= 11
+
+        @current_score += 10
     end
 end

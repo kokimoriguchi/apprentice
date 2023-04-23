@@ -23,7 +23,7 @@ class Player
         @deck.draw
         add_score
         puts "あなたの2枚目に引いたカードは#{@deck.selected_type}の#{@deck.selected_number}です。"
-        #current_score #2枚目引いた時点でcurrent_scoreに数字入っているのでここで返している。
+      #current_score #2枚目引いた時点でcurrent_scoreに数字入っているのでここで返している。
     end
 
     #ドローするかどうかの判断
@@ -69,9 +69,8 @@ class Player
     #current_scoreにドローしたスコアをプラスする。かつ、プラスする際にAを含んでいれば21以内で最大値になる方（1or11）にするメソッド
     def add_score
         @current_score += @deck.selected_score
-        if ['A'].include?(@deck.selected_number) && @current_score < 11
-            @current_score += 10
-        end
-    end
+        return unless ['A'].include?(@deck.selected_number) && @current_score <= 11
 
+        @current_score += 10
+    end
 end

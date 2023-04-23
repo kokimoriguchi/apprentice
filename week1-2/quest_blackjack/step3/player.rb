@@ -21,12 +21,21 @@ class Player
         puts "#{@name}の2枚目に引いたカードは#{@deck.selected_type}の#{@deck.selected_number}です。"
     end
 
+    #current_scoreにドローしたスコアをプラスする。かつ、プラスする際にAを含んでいれば21以内で最大値になる方（1or11）にするメソッド
+    def add_score
+        @current_score += @deck.selected_score
+        if ['A'].include?(@deck.selected_number) && @current_score <= 11
+            @current_score += 10
+        end
+    end
+
     #追加ドロー（ヒット）する場合の処理
     def hit
         @deck.draw
         add_score
         puts "#{@name}の引いたカードは#{@deck.selected_type}の#{@deck.selected_number}です。"
         puts "#{@name}の現在の得点は#{@current_score}です"
+        re_hit
     end
 
     #現在のスコア
@@ -34,12 +43,9 @@ class Player
         @current_score
     end
 
-    #current_scoreにドローしたスコアをプラスする。かつ、プラスする際にAを含んでいれば21以内で最大値になる方（1or11）にするメソッド
-    def add_score
-        @current_score += @deck.selected_score
-        if ['A'].include?(@deck.selected_number) && @current_score <= 11
-            @current_score += 10
-        end
+    #追加ドロー（ヒット）した後にスコアの評価し判断する。
+    def re_hit
+        return 'Burst' if burst?(total_score)
     end
 
 end

@@ -1,5 +1,5 @@
 require_relative 'player'
-
+require 'debug'
 class User < Player
     def initialize(deck, name)
         super
@@ -27,13 +27,7 @@ class User < Player
     #追加ドロー（ヒット）した後にスコアの評価し判断する。
     def re_hit
         return 'Burst' if burst?(total_score)
-
         select_thing
-    end
-
-    def hit
-        super
-        re_hit
     end
 
 end

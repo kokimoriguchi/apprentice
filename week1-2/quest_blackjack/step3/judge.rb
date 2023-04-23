@@ -11,9 +11,11 @@ end
 
 #ゲームの判定をするクラス
 class Judge
-    def initialize(user, dealer)
+    def initialize(user, dealer, cpu_one = nil , cpu_two = nil)
         @user = user
         @dealer = dealer
+        @cpu_one = cpu_one
+        @cpu_two = cpu_two
     end
 
     def game_judge

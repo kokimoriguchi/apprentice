@@ -2,7 +2,7 @@
 require 'debug'
 
 class Dealer < Player
-    include JudegModule
+    # include JudegModule
     attr_reader :current_score
 
     # Deckクラスのインスタンスを受け取る
