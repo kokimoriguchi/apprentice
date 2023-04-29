@@ -35,7 +35,7 @@ class Dealer < Player
 
     #17以下の場合。追加でドローするかどうかの判断
     def add_hit
-        return unless @current_score < 17
+        return unless @current_total_score < 17
 
         hit
 
