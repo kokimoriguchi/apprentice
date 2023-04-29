@@ -1,15 +1,15 @@
 #52枚のカードを作るクラス
 class Card
-    attr_reader :cards
+  attr_reader :cards
 
-    def initialize
-      #インスタンス生成時に初期値として入れられるのがインスタンス変数。今回はnewした時に引数取らないのでメソッドのとこは引数なし。その代わりそれぞれ配列など入れてる。
-      @types = ['クローバー', 'ダイアモンド', 'ハート', 'スペード']
-      @numbers = ['A', *(2..10).to_a.map(&:to_s), 'J', 'Q', 'K']
-      @cards = create_card(@types, @numbers)
-    end
+  def initialize
+    #インスタンス生成時に初期値として入れられるのがインスタンス変数。今回はnewした時に引数取らないのでメソッドのとこは引数なし。その代わりそれぞれ配列など入れてる。
+    @types = ['クローバー', 'ダイアモンド', 'ハート', 'スペード']
+    @numbers = ['A', *(2..10).to_a.map(&:to_s), 'J', 'Q', 'K']
+    @cards = create_card(@types, @numbers)
+  end
 
-    #52枚のカードの定義
+  #52枚のカードの定義
 	def create_card(types, numbers)
 		cards = {}
 		types.each do |type|
