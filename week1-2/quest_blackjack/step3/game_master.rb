@@ -88,7 +88,6 @@ class GameMaster
     score = @user.select_thing
     if burst?(score)
       puts 'バーストしました。あなたの負けです。'
-      end_turn
     else
       dealer_draw_turn
     end
@@ -101,7 +100,6 @@ class GameMaster
     if burst?(score)
       puts 'バーストしました。'
       puts 'プレイヤーの勝ちです。'
-      end_turn
     else
       judge_turn
     end
@@ -110,19 +108,14 @@ class GameMaster
   #ジャッジクラスの勝敗決めを呼び出す。
   def judge_turn
     @judge.game_judge
-    end_turn
-  end
-
-  #終了見せる
-  def end_turn
-    puts 'ブラックジャックゲームを終了します。'
-    puts '----------------------------------------------'
   end
 
   def game_start
     start
     choose_player_count
     player_draw_turn
+    puts 'ブラックジャックゲームを終了します。'
+    puts '----------------------------------------------'
   end
 
 end

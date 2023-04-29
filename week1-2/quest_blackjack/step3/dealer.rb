@@ -29,7 +29,7 @@ class Dealer < Player
     #2枚目のカード公開し、合計点数出す。
     def show_second_draw
         puts "ディーラーの引いた2枚目のカードは#{@second_draw_type}の#{@second_draw_number}でした。"
-        puts "ディーラーの現在の得点は#{@current_score}です。"
+        puts "ディーラーの現在の得点は#{@current_total_score}です。"
         add_hit
     end
 
