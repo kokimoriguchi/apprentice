@@ -18,12 +18,14 @@ drop database db_name
 ## 1. ユーザーの作成
 create user 'ユーザー名'@'localhost' IDENTIFIED BY 'password';
 ## 2. ユーザーの表示
-select * from mysql.user
+select User,Host from mysql.user
 ## 3. ユーザーへの権限付与
-
+GRANT SELECT ON database_name.* TO 'user_name'@'localhost';
 ## 4. 権限のリロード
-
+FLUSH PRIVILEGES;
 ## 5. ユーザーの削除
-
+drop user 'user_name'@localhost;
 ## 6. ユーザーの再作成
-
+create user 'ユーザー名'@'localhost' IDENTIFIED BY 'password';
+GRANT SELECT ON database_name.* TO 'user_name'@'localhost';
+FLUSH PRIVILEGES;
