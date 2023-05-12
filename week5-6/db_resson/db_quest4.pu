@@ -1,0 +1,36 @@
+@startuml ER
+entity users as "users\nユーザー" {
+  *id INT(10) [PK]
+  --
+  * user_name :VARCHAR(30) : ユーザー名
+  created_at : DATE : 作成日時
+  updated_at : DATE : 更新日時
+}
+
+entity purchase_products as "purchase_products\n購入品" {
+  *users_id [FK]
+  *products_id [FK]
+  --
+  purchase_count : INT(255) : 購入個数
+  purchase_date : DATE : 商品購入日
+
+}
+
+entity products as "products\n商品" {
+  *id INT(10) [PK]
+  --
+  product_name : VARCHAR(255) : 商品名
+  price : INT(255): 商品価格
+}
+
+entity category as "category\n商品分類" {
+  *id INT(10) [PK]
+  --
+  *products_id [FK]
+  category_name : VARCHAR(255) : カテゴリー名
+}
+
+purchase_products}|-u-||users
+purchase_products}|-r-||products
+category }|--|{ products
+@enduml
