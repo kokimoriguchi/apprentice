@@ -23,3 +23,6 @@
 - ジャンル(category)
 - 放送開始時間(start_time_schedule)
 - 放送終了時間(end_time_schedule)
+
+疑問点
+DATETIMEにしていたがDATEとTIMEに変更した

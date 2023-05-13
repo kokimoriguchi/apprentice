@@ -1,0 +1,79 @@
+@startuml ER
+
+!define TABLE_BORDER_COLOR #000000
+!define TABLE_HEADER_BACKGROUND_COLOR #D9E5FF
+!define TABLE_CELL_BACKGROUND_COLOR #FFFFFF
+
+skinparam defaultTextAlignment center
+skinparam defaultMonochrome true
+skinparam Shadowing false
+skinparam ArrowThickness 1
+
+!define PRIMARY_KEY_COLOR Orange
+!define FOREIGN_KEY_COLOR Green
+
+entity "channels" as channels {
+  +-- ID (PK) : INT
+  channel_number (UNI) : INT
+  channel_name : VARCHAR(255)
+}
+
+entity "products" as products {
+  +-- ID (PK) : INT
+  title : VARCHAR(255)
+  product_minutes : INT
+}
+
+entity "channel_schedules" as channel_schedules {
+  +-- ID (PK) : INT
+  +-- channel_id (FK) : INT
+  +-- product_id (FK) : INT
+  start_time_schedule : TIME
+  end_time_schedule : TIME
+  broadcast_date : DATE
+}
+
+entity "product_details" as product_details {
+  +-- ID (PK) : INT
+  +-- product_id (FK) : INT
+  product_detail : VARCHAR(255)
+  release_date : DATE
+}
+
+entity "seasons" as seasons {
+  +-- ID (PK) : INT
+  +-- product_id (FK) : INT
+  season_number : INT
+  total_season : INT
+}
+
+entity "episodes" as episodes {
+  +-- ID (PK) : INT
+  +-- season_id (FK) : INT
+  episode_title : VARCHAR(255)
+  episode_number : INT
+  total_episode : INT
+}
+
+entity "categories" as categories {
+  +-- ID (PK) : INT
+  +-- product_id (FK) : INT
+  category_name (UNI) : CHAR(30)
+}
+
+entity "views" as views {
+  +-- ID (PK) : INT
+  +-- product_id (FK) : INT
+  +-- episode_id (FK) : INT
+  view_count : INT
+}
+
+channel_schedules --|| channels
+products --|| channel_schedules
+products --|| product_details
+products --|| seasons
+seasons --|| episodes
+products --|| categories
+products --|| views
+
+@enduml
