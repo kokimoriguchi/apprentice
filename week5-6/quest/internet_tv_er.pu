@@ -22,6 +22,8 @@ entity "products" as products {
   +-- ID (PK) : INT
   title : VARCHAR(255)
   product_minutes : INT
+  product_detail : VARCHAR(255)
+  release_date : DATE
 }
 
 entity "channel_schedules" as channel_schedules {
@@ -31,13 +33,6 @@ entity "channel_schedules" as channel_schedules {
   start_time_schedule : TIME
   end_time_schedule : TIME
   broadcast_date : DATE
-}
-
-entity "product_details" as product_details {
-  +-- ID (PK) : INT
-  +-- product_id (FK) : INT
-  product_detail : VARCHAR(255)
-  release_date : DATE
 }
 
 entity "seasons" as seasons {
@@ -68,12 +63,11 @@ entity "views" as views {
   view_count : INT
 }
 
-channel_schedules --|| channels
+channel_schedules --|{ channels
 products --|| channel_schedules
-products --|| product_details
-products --|| seasons
-seasons --|| episodes
-products --|| categories
-products --|| views
+products }-- seasons
+seasons --|{ episodes
+products }-- categories
+products }-- views
 
 @enduml
