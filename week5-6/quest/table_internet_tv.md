@@ -45,8 +45,8 @@ episodes
 | id             | INT          |      | PRIMARY |              | YES            |
 | season_id(FK)  | INT          |      |         |              |                |
 | episode_title  | VARCHAR(255) |      |         |              |                |
-| episode_number | INT          | YES  |         |              |                |
-| total_episode  | INT          | YES  |         |              |                |
+| episode_number | INT          |      |         |              |                |
+| total_episode  | INT          |      |         |              |                |
 
 番組のジャンル
 categories

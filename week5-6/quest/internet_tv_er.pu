@@ -63,10 +63,10 @@ entity "views" as views {
   view_count : INT
 }
 
-channel_schedules --|{ channels
-products --|| channel_schedules
+channel_schedules --{ channels
+products }--{ channel_schedules
 products }-- seasons
-seasons --|{ episodes
+seasons --{ episodes
 products }-- categories
 products }-- views
 
