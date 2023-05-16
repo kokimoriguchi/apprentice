@@ -63,11 +63,12 @@ entity "views" as views {
   view_count : INT
 }
 
-channel_schedules --{ channels
-products }--{ channel_schedules
-products }-- seasons
-seasons --{ episodes
-products }-- categories
-products }-- views
+channels }-d- channel_schedules
+products }-l-{ channel_schedules
+products }-d- seasons
+episodes }-l- seasons
+episodes }-r- views
+products }-r- views
+products }-u- categories
 
 @enduml
