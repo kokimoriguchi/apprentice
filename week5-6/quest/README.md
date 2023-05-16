@@ -6,9 +6,11 @@
 - step2の部分の実施過程を残したdocumentになります。
 ### step3_document.md
 - 今回の課題のER図になります。
-<detail><summary>ER図<summary>
-<img width="" src="image.png">
-<detail>
+<details><summary>ER図<summary>
+
+<img width="" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/cdd8001e-2a4d-d53d-640d-e7d1315c71ce.png">
+
+<details>
 ### entity
 - チャンネル名(channel_name)
 - チャンネル番号(channel_number)
