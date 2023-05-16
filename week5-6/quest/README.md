@@ -4,25 +4,25 @@
 - step1のテーブルになります。エンティティは下記に示したとおりです。
 ### step2_document.md
 - step2の部分の実施過程を残したdocumentになります。
-### 
+### step3_document.md
 - 今回の課題のER図になります。
-
+<detail><summary>ER図<summary>
+<img width="" src="image.png">
+<detail>
 ### entity
 - チャンネル名(channel_name)
 - チャンネル番号(channel_number)
 - タイトル(title)
-- シーズン数(season_count)
+- シーズン数(total_season)
 - シーズン番号(season_number)
 - エピソード数(total_episode)
 - エピソード番号(episode_number)
-- 視聴数(view)
+- 視聴数(view_count)
 - エピソード詳細(product_detail)
 - 動画時間(product_minutes)
 - 公開日(release_date)
 - 番組詳細(product_detail)
-- ジャンル(category)
+- ジャンル(category_name)
+- 放送日(broadcast_date)
 - 放送開始時間(start_time_schedule)
 - 放送終了時間(end_time_schedule)
-
-疑問点
-DATETIMEにしていたがDATEとTIMEに変更した

@@ -82,10 +82,3 @@ CREATE TABLE views (
   FOREIGN KEY (episode_id) REFERENCES episodes(id)
 );
 ```
-INSERT INTO episodes (season_id, episode_title, episode_number, total_episode) VALUES
-(1, 'エピソード1', 1, 10),
-(1, 'エピソード2', 2, 10),
-(1, 'エピソード3', 3, 10),
-(2, 'エピソード1', 1, 5),
-(3, 'エピソード1', 1, 8),
-(4, 'エピソード2', 1, 12);

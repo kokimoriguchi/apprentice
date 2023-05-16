@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
+        "CONCAT",
         "Languageの略でRDBMSにアクセスするために用いる言語でこの言語を使うことでRDBMSにデータの取得や更新等ができる",
         "VAECHAR",
         "VARCHAR"
