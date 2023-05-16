@@ -1,17 +1,15 @@
 # internetTV_database
 ## 概要
-### able_internet_tv.md
+### table_internet_tv.md
 - step1のテーブルになります。エンティティとER図は下記に示したとおりです。
 ### step2_document.md
 - step2の部分の実施過程を残したdocumentになります。
 ### step3_document.md
 - step3のSQLの記述です。
-
-<details><summary>ER図<summary>
-
+### internet_tv_er.pu
+- ER図をplantUMLにて作成しているファイルです。下記ER図プレビューです。
 <img width="" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2741017/cdd8001e-2a4d-d53d-640d-e7d1315c71ce.png">
 
-</details>
 
 ### entity
 - チャンネル名(channel_name)
