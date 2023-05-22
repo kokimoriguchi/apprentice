@@ -1,4 +1,22 @@
 # internetTV_database
+## entity
+- チャンネル名(channel_name)
+- チャンネル番号(channel_number)
+- タイトル(title)
+- シーズン数(total_season)
+- シーズン番号(season_number)
+- エピソード数(total_episode)
+- エピソード番号(episode_number)
+- 視聴数(view_count)
+- エピソード詳細(product_detail)
+- 動画時間(product_minutes)
+- 公開日(release_date)
+- 番組詳細(product_detail)
+- ジャンル(category_name)
+- 放送日(broadcast_date)
+- 放送開始時間(start_time_schedule)
+- 放送終了時間(end_time_schedule)
+
 ## tables
 チャンネル番号と名前
 channels
