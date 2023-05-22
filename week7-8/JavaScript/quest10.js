@@ -20,8 +20,9 @@ odd([1,2,3,4,5])
 const square = (numbers) => {
   const result = [];
   for (let i = 0; i < numbers.length; i++){
-    return result = numbers[i]**
-    console.log(result);
+    const square_numbers = numbers[i] ** 2;
+    result.push(square_numbers);
   }
+  console.log(result)
 }
 square([1,2,3,4,5])
