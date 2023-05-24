@@ -33,7 +33,7 @@ window.onload = function() {
     document.getElementById("title").value = ""
     document.getElementById("content").value = ""
 
-
+    //ボタンにイベントリスナー設定しevent.target.parentNode;でクリックしたイベントの親要素の取得し、親要素の子要素を削除するremoveChildで削除
     newButton.addEventListener("click", function(event){
       const parentElement = event.target.parentNode;
       parentElement.removeChild(new_h)
