@@ -20,14 +20,14 @@ class Playlist {
       const currentSong = this.songs[0];
       return `再生中: ${currentSong}`;
     } else {
-      return '再生中の曲はありません';
+      return "再生中の曲はありません";
     }
   }
 }
 
-let myPlaylist = new Playlist('お気に入りリスト');
-myPlaylist.addSong('Lemon');
-myPlaylist.addSong('花束');
+let myPlaylist = new Playlist("お気に入りリスト");
+myPlaylist.addSong("Lemon");
+myPlaylist.addSong("花束");
 console.log(myPlaylist.play()); // 再生中: Lemon
-myPlaylist.removeSong('Lemon');
+myPlaylist.removeSong("Lemon");
 console.log(myPlaylist.play()); // 再生中：花束

@@ -8,30 +8,29 @@ const addTodo = (event) => {
   event.preventDefault();
 
   //ul要素の中にdivタグ作成しその中に新しいtodoとデリートボタン、チェックボックス入れていく。
-  const addDiv = document.createElement('div')
-  addDiv.classList.add('todo-content')
-  newTodo.appendChild(addDiv)
+  const addDiv = document.createElement("div");
+  addDiv.classList.add("todo-content");
+  newTodo.appendChild(addDiv);
 
   //todoの追加する関数。中でデリートボタン呼び出す関数もよんでいる
-  const todoInput = document.getElementById('todo-input').value
-  const addList = document.createElement('li')
-  addList.classList.add('todo-item');
-  addList.textContent = todoInput
+  const todoInput = document.getElementById("todo-input").value;
+  const addList = document.createElement("li");
+  addList.classList.add("todo-item");
+  addList.textContent = todoInput;
   addDiv.appendChild(addList);
-  document.getElementById('todo-input').value = ""
+  document.getElementById("todo-input").value = "";
 
   //ボタン追加する関数
   const addButton = () => {
-
     //デリートボタン追加する関数
-    const deleteButton = document.createElement('button')
-    deleteButton.classList.add('delete-button')
-    deleteButton.textContent = "削除"
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-button");
+    deleteButton.textContent = "削除";
     addDiv.appendChild(deleteButton);
 
     //チェックボックス追加する関数
-    const checkBox = document.createElement('input');
-    checkBox.setAttribute('type', 'checkbox');
+    const checkBox = document.createElement("input");
+    checkBox.setAttribute("type", "checkbox");
     addDiv.appendChild(checkBox);
 
     //デリートボタン押した時にクリックイベント発火で削除する関数
@@ -39,9 +38,9 @@ const addTodo = (event) => {
       const parent = event.target.parentNode;
       parent.removeChild(addList);
       parent.removeChild(deleteButton);
-      parent.removeChild(checkBox)
-    }
-    deleteButton.addEventListener('click', deleteTodo )
+      parent.removeChild(checkBox);
+    };
+    deleteButton.addEventListener("click", deleteTodo);
 
     //チェックボックスクリックで打ち消し線出す関数
     const checkEvent = (event) => {
@@ -49,16 +48,16 @@ const addTodo = (event) => {
       const listItem = checkbox.parentNode;
 
       if (event.target.checked) {
-        listItem.style.textDecoration = 'line-through';
+        listItem.style.textDecoration = "line-through";
       } else {
-        listItem.style.textDecoration = 'none';
+        listItem.style.textDecoration = "none";
       }
     };
-    checkBox.addEventListener('click', checkEvent)
+    checkBox.addEventListener("click", checkEvent);
   };
-  addButton()
+  addButton();
 };
 
-const addButton = document.getElementById('add-button')
-const newTodo = document.getElementById('todo-list')
-addButton.addEventListener('click', addTodo);
+const addButton = document.getElementById("add-button");
+const newTodo = document.getElementById("todo-list");
+addButton.addEventListener("click", addTodo);
