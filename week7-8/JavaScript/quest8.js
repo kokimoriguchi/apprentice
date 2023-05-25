@@ -1,1 +1,4 @@
-const greet = (name) => { console.log(`Hello,${name}!`) }
+const greet = (name) => {
+  console.log(`Hello,${name}!`);
+};
+console.log(greet);

@@ -9,7 +9,7 @@
 // なお、asyncSort 関数を呼び出しの後に console.log('同期処理'); を実行したにもかかわらず、同期処理 が先に表示されることを確認してください。
 // これが非同期処理の特徴です。
 
-function asyncSort(numbers) {
+function asyncSortOne(numbers) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (numbers && numbers.length > 0) {
@@ -22,7 +22,7 @@ function asyncSort(numbers) {
 }
 
 const numbers = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5];
-asyncSort(numbers)
+asyncSortOne(numbers)
   .then((sortedNumbers) => {
     console.log(sortedNumbers);
   })
