@@ -1,26 +1,35 @@
-import React, { useState } from "react";
-import InputForm from "./components/input-form/inputForm";
+import TodoApp from "./components/todo-item/todoApp";
+import CalculatorApp from "./components/calc-app/calcApp";
+import Home from "./components/home.jsx";
+import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 
-const App = () => {
-  const [tasks, setTasks] = useState([]);
-
-  const handleButtonClick = (text) => {
-    console.log(text);
-    const newTask = <p>{text}</p>;
-    setTasks((prevTasks) => [...prevTasks, newTask]);
-  };
-
+export default function App() {
   return (
-    <div className="bg-white py-6 sm:py-8 lg:py-12 mx-auto max-w-lg rounded-lg border">
-      <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
-        <h1 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">
-          Todoリスト
-          <InputForm onButtonClick={handleButtonClick} />
-        </h1>
-        <div>{tasks}</div> {/* タスクを表示するための要素 */}
+    <>
+      <div className="text-black-800 mb-8 text-3xl font-bold sm:text-4xl md:mb-12 md:text-5xl text-center">
+        <h1>WELCOME APP</h1>
       </div>
-    </div>
-  );
-};
+      <BrowserRouter>
+        <div className="App text-center">
+          <ul>
+            <li>
+              <Link to="/Home">HOME</Link>
+            </li>
+            <li>
+              <Link to="/TodoApp">TodoApp</Link>
+            </li>
+            <li>
+              <Link to="/CalcApp">CalculatorApp</Link>
+            </li>
+          </ul>
+        </div>
 
-export default App;
+        <Routes>
+          <Route path="/Home" element={<Home />} />
+          <Route path="/TodoApp" element={<TodoApp />} />
+          <Route path="/CalcApp" element={<CalculatorApp />} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
+}
