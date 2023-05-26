@@ -2,7 +2,7 @@
 // 天気情報の取得は、Fetch API を使用して、OpenWeather API への HTTP リクエストを処理することで実現してください。
 // 以下のコードを元に、天気予報アプリを作成してください。
 
-const apiKey = "a188f35f8774ad1e2ae002f9b8e0e370"; // 自分の OpenWeatherMap API キーに置き換えてください
+const apiKey = ""; // 自分の OpenWeatherMap API キーに置き換えてください
 
 // 都市名や緯度経度などのパラメータを指定して天気情報を取得する関数
 

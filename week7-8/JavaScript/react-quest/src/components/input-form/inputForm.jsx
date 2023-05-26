@@ -5,12 +5,18 @@ const InputForm = ({ onButtonClick }) => {
   const [text, setText] = useState("");
 
   const handleChange = (event) => {
+    //setText関数でtext変数を更新する
     setText(event.target.value);
   };
 
   const handleClick = () => {
-    onButtonClick(text);
-    setText("");
+    //onButtonClickのコールバック関数でtext変数を大元の引数にする
+    //trimは空白文字列を取り除き文字列などだけを残すメソッド。その後に空白じゃなければtrueを返す条件分岐
+    if (text.trim() !== "") {
+      // テキストの値が空白でないことを確認
+      onButtonClick(text);
+      setText("");
+    }
   };
 
   return (
