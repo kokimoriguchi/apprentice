@@ -2,11 +2,13 @@ import CalcDisplay from "./calcDisplay";
 import NumberButton from "./numberButton";
 import CalcNumber from "./calcNumber";
 import { useState } from "react";
+import Answer from "./answer";
 
 export default function CalculatorApp() {
   const [displayValue, setDisplayValue] = useState("");
   const [decidedNumber, setDecidedNumber] = useState("");
   const [currentOperator, setCurrentOperator] = useState("");
+  const [result, setResult] = useState("");
 
   const handleButtonClick = (value, type) => {
     switch (type) {
@@ -26,6 +28,7 @@ export default function CalculatorApp() {
         break;
       case "equal":
         calculateResult();
+        setDisplayValue("");
         setCurrentOperator("");
         break;
       default:
@@ -36,26 +39,23 @@ export default function CalculatorApp() {
   const calculateResult = () => {
     const num1 = parseFloat(decidedNumber);
     const num2 = parseFloat(displayValue);
-    let result = 0;
 
     switch (currentOperator) {
       case "+":
-        result = num1 + num2;
+        setResult(num1 + num2);
         break;
       case "-":
-        result = num1 - num2;
+        setResult(num1 - num2);
         break;
       case "*":
-        result = num1 * num2;
+        setResult(num1 * num2);
         break;
       case "/":
-        result = num1 / num2;
+        setResult(num1 / num2);
         break;
       default:
         break;
     }
-
-    setDisplayValue(result.toString());
     setDecidedNumber("");
   };
 
@@ -70,6 +70,8 @@ export default function CalculatorApp() {
           <div className="grid grid-cols-4 ">
             <NumberButton onClick={handleButtonClick} />
             <CalcNumber decidedNumber={decidedNumber} />
+            <br />
+            <Answer result={result} />
           </div>
         </div>
       </div>
