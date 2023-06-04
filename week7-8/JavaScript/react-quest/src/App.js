@@ -6,7 +6,7 @@ import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 export default function App() {
   return (
     <>
-      <div className="text-black-800 mb-8 text-3xl font-bold sm:text-4xl md:mb-12 md:text-5xl text-center">
+      <div className="text-black-800 mb-8 text-3xl font-bold sm:text-4xl md:mb-12 md:text-5xl text-center pt-24">
         <h1>WELCOME APP</h1>
       </div>
       <BrowserRouter>
